@@ -4,15 +4,16 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	"github.com/Altynbek38/Go-2024/blob/main/tsis1/internal/handlers"
+	"github.com/Altynbek38/Go-2024/tsis1/internal/handlers"
 )
 
 func main() {
 	router := mux.NewRouter()
+	log.Println("Starting")
+	router.HandleFunc("/health-check", handlers.HealthCheck).Methods("GET")
+	router.HandleFunc("/drivers", handlers.GetAll).Methods("GET")
+	router.HandleFunc("/drivers/{firstname}", handlers.GetByFirstName).Methods("GET")
+	log.Println("Processing")
+	http.ListenAndServe(":8080", router)
 
-	router.HandleFunc("/health-check", healthCheck).Methods("GET")
-	router.HandleFunc("/drivers", getAll).Methods("GET")
-	router.HandleFunc("/drivers/{firstname}", getByFirstName).Methods("GET")
-
-	http.ListenAndServe(":80", router)
 }

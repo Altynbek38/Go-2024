@@ -3,10 +3,12 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"encoding/json"
+	"github.com/gorilla/mux"
 	"github.com/Altynbek38/Go-2024/tsis1/api"
 )
 
-func getAll(w http.ResponseWriter, r *http.Request) {
+func GetAll(w http.ResponseWriter, r *http.Request) {
 	drivers := api.Drivers
 
 	w.Header().Set("Content-Type", "application/json")
@@ -15,16 +17,16 @@ func getAll(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(drivers)	
 }
 
-func getByFirstName(w http.ResponseWriter, r *http.Request) {
+func GetByFirstName(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	driverName = vars["firstname"]
+	driverName := vars["firstname"]
 
-	driver := api.getDriverByFirstName(driverName)
+	driver := api.GetDriverByFirstName(driverName)
 	
 	w.Header().Set("Content-Type", "application/json")
 	
-	if driver == nil {
-		w.WriteHeader(http.StatusNotFound())
+	if driver.Firstname == "" {
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
@@ -32,7 +34,7 @@ func getByFirstName(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(driver)
 }
 
-func healthCheck (w. http.ResponseWriter, r *http.Request) {
+func HealthCheck (w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "Hello to F1 Drivers API\n This API provides data about 20 F1 drivers \n Author: Altynbek Zholdybay")
 }

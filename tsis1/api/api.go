@@ -1,17 +1,12 @@
 package api
 
-import (
-	"fmt"
-	"encoding/json"
-	"net/http"
-)
 
 type Driver struct {
 	Firstname string `json:"firstname"`
 	Lastname string `json:"lastname"`
 	Country string `json:"country"`
 	Team string `json:"team"`
-	Age int `"json:"age"`
+	Age int `json:"age"`
 }
 
 var Drivers = []Driver{
@@ -37,11 +32,11 @@ var Drivers = []Driver{
 	{"Nikolas", "Hülkenberg", "Germany", "Aston Martin", 34},
 }
 
-func getDriverByFirstName(name string) Driver {
-	for _, driver := range Driver {
-		if driver.firstname == name {
+func GetDriverByFirstName(name string) Driver {
+	for _, driver := range Drivers {
+		if driver.Firstname == name {
 			return driver
 		}
 	}
-	return nil
+	return Driver{"", "", "", "", 0}
 }
