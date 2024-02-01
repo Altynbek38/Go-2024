@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	"github.com/Altynbek38/Go-2024/tsis1/internal/handlers"
+	"github.com/Altynbek38/Go-2024/blob/main/tsis1/internal/handlers"
 )
 
 func main() {
