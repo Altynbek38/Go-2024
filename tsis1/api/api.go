@@ -33,9 +33,9 @@ var Drivers = []Driver{
 }
 
 func GetDriverByFirstName(name string) Driver {
-	for _, driver := range Drivers {
-		if driver.Firstname == name {
-			return driver
+	for  i := 0; i < len(Drivers); i++ {
+		if Drivers[i].Firstname == name {
+			return Drivers[i]
 		}
 	}
 	return Driver{"", "", "", "", 0}
