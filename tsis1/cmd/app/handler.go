@@ -1,15 +1,15 @@
-package handlers
+package main
 
 import (
 	"fmt"
 	"net/http"
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"github.com/Altynbek38/Go-2024/tsis1/api"
+	formula "github.com/Altynbek38/Go-2024/tsis1/internal/app"
 )
 
 func GetAll(w http.ResponseWriter, r *http.Request) {
-	drivers := api.Drivers
+	drivers := formula.Drivers
 
 	w.Header().Set("Content-Type", "application/json")
 
@@ -21,7 +21,7 @@ func GetByFirstName(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	driverName := vars["firstname"]
 
-	driver := api.GetDriverByFirstName(driverName)
+	driver := formula.GetDriverByFirstName(driverName)
 	
 	w.Header().Set("Content-Type", "application/json")
 	
